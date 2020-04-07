@@ -1,5 +1,5 @@
 Description: >
-  Thegaijin | Getting started with CloudFormation
+  Thegaijin | Getting started with CloudFormation - networking
 Parameters:
   EnvironmentName:
     Description: An environment name that will be prefixed to resources
