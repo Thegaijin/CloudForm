@@ -111,25 +111,25 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
     Properties:
       Actions:
-      - Type: forward
-        TargetGroupArn: !Ref 'WebAppTargetGroup'
+        - Type: forward
+          TargetGroupArn: !Ref "WebAppTargetGroup"
       Conditions:
-      - Field: path-pattern
-        Values: [/]
+        - Field: path-pattern
+          Values: [/]
       ListenerArn: !Ref "Listener"
       Priority: 1
 
   WebAppTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      HealthCheckIntervalSeconds: 10
+      HealthCheckIntervalSeconds: 10 # The time it takes to determine a non-responsive target is unhealthy
       HealthCheckPath: /
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 8
-      HealthyThresholdCount: 2
-      Port: 8080
-      Protocol: HTTP
-      HealthyThresholdCount: 5
+      HealthyThresholdCount: 2 # The number of healthy checks required to change the health status
+      Port: 8080 # The port where our targets receive traffic
+      Protocol: HTTP # The protocol the load balancer uses when performing health checks on target
+      UnHealthyThresholdCount: 5 # The number of unhealthy checks required to change the health status
       VpcId:
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
