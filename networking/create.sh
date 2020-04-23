@@ -5,8 +5,8 @@
 echo $1
 echo $2
 echo $3
-OUTPUT="$(aws cloudformation describe-stack-resources --stack-name $1)"
-echo "This is the ${OUTPUT}"
+# OUTPUT="$(aws cloudformation describe-stack-resources --stack-name $1)"
+# echo "This is the ${OUTPUT}"
 # aws cloudformation describe-stack-resources --stack-name $1
 # if jq -e . >/dev/null 2>&1 <<<"$json_string"; then
 #     echo "Parsed JSON successfully and got something other than false/null"
@@ -20,3 +20,7 @@ echo "This is the ${OUTPUT}"
 # aws cloudformation create-stack --stack-name $1 \
 # --template-body file://$2 --parameters file://$3 \
 # --region=us-west-2
+
+aws cloudformation create-stack --stack-name $1 \
+--template-body file://$2 --parameters file://$3 \
+--region=us-west-2
